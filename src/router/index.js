@@ -1,21 +1,32 @@
 import { createRouter, createWebHistory } from "@ionic/vue-router";
-import HomePage from "../views/HomePage.vue";
-import ExerciceIntegration from "../views/ExerciceIntegration.vue";
+import TabsPage from "../views/TabsPage.vue";
 
 const routes = [
   {
     path: "/",
-    redirect: "/home",
+    redirect: "/tabs/tab1",
   },
   {
-    path: "/home",
-    name: "Home",
-    component: HomePage,
-  },
-  {
-    path: "/exercice-integration",
-    name: "Exercice integration",
-    component: ExerciceIntegration,
+    path: "/tabs/",
+    component: TabsPage,
+    children: [
+      {
+        path: "",
+        redirect: "/tabs/tab1",
+      },
+      {
+        path: "tab1",
+        component: () => import("@/views/Tab1Page.vue"),
+      },
+      {
+        path: "tab2",
+        component: () => import("@/views/Tab2Page.vue"),
+      },
+      {
+        path: "tab3",
+        component: () => import("@/views/Tab3Page.vue"),
+      },
+    ],
   },
 ];
 
